@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Bungee&family=Press+Start+2P&family=Share+Tech+Mono&family=VT323&family=Wallpoet&family=Gochi+Hand&family=Patrick+Hand&family=Amatic+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="clock">
+        <p class="time"></p>
+        <p class="date"></p>
+    </div>
+
+    <button id="settings-toggle-button">⚙️</button>
+
+    <div id="settings" class="hidden">
+        <div class="setting-row">
+            <label for="font-select">Font</label>
+            <select id="font-select">
+                <option value="'Orbitron', sans-serif">Orbitron</option>
+                <option value="'Bungee', cursive">Bungee</option>
+                <option value="'Press Start 2P', cursive">Press Start 2P</option>
+                <option value="'Share Tech Mono', monospace">Share Tech Mono</option>
+                <option value="'VT323', monospace">VT323</option>
+                <option value="'Wallpoet', cursive">Wallpoet</option>
+                <option value="'Gochi Hand', cursive">Gochi Hand</option>
+                <option value="'Patrick Hand', cursive">Patrick Hand</option>
+                <option value="'Amatic SC', cursive">Amatic SC</option>
+            </select>
+        </div>
+        <div class="setting-row">
+            <label for="text-color-picker">Text Color</label>
+            <input type="color" id="text-color-picker" value="#eeeeee">
+        </div>
+        <div class="setting-row">
+            <label for="glow-color-picker">Glow Color</label>
+            <input type="color" id="glow-color-picker" value="#00ffff">
+        </div>
+        <div class="setting-row">
+            <input type="checkbox" id="hour-format-toggle">
+            <label for="hour-format-toggle">12-Hour Format</label>
+        </div>
+        <div class="setting-row">
+            <input type="checkbox" id="show-seconds-toggle" checked>
+            <label for="show-seconds-toggle">Show Seconds</label>
+        </div>
+        <div class="setting-row">
+            <input type="checkbox" id="show-date-toggle" checked>
+            <label for="show-date-toggle">Show Date</label>
+        </div>
+        <div class="setting-row">
+            <input type="checkbox" id="show-day-of-week-toggle" checked>
+            <label for="show-day-of-week-toggle">Show Day of Week</label>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

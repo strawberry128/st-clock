@@ -1,0 +1,77 @@
+html {
+    --text-color: #eee;
+    --glow-color: #0ff;
+    font-family: 'Orbitron', sans-serif;
+    background: #222;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at center, #444 0%, #222 100%);
+}
+
+#clock {
+    color: var(--text-color);
+    text-align: center;
+    text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+}
+
+.time {
+    font-size: 12vw;
+    font-weight: bold;
+    margin: 0;
+}
+
+.date {
+    font-size: 4vw;
+    margin: 0;
+}
+
+#settings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+#settings.hidden {
+    display: none;
+}
+
+#settings-toggle-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    color: #eee;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+#font-select {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+    padding: 5px;
+    font-family: sans-serif;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #eee;
+    min-width: 300px;
+}
