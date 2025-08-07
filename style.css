@@ -30,19 +30,46 @@ body {
     margin: 0;
 }
 
-#settings {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
+.settings-panel {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Start off-screen */
+    width: 320px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 15px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
     z-index: 100;
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto;
+    font-family: sans-serif;
 }
 
-#settings.hidden {
-    display: none;
+.settings-panel.open {
+    right: 0; /* Slide in */
+}
+
+#settings-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #eee;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.settings-panel h2, .settings-panel h3 {
+    color: #0ff;
+    text-align: center;
+    border-bottom: 1px solid #0ff;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.settings-panel h3:first-of-type {
+    margin-top: 0;
 }
 
 #settings-toggle-button {
@@ -57,21 +84,43 @@ body {
     z-index: 101;
 }
 
-#font-select {
+#font-select, #theme-select {
     background-color: #333;
     color: #eee;
     border: 1px solid #555;
     padding: 5px;
-    font-family: sans-serif;
+    width: 150px;
 }
 
 .setting-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
-    font-family: sans-serif;
+    margin-top: 15px;
     font-size: 16px;
     color: #eee;
-    min-width: 300px;
+}
+
+.import-button {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#export-button {
+     background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
+
+input[type="range"] {
+    width: 150px;
 }
