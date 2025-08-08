@@ -41,8 +41,101 @@ const PRESETS = {
         font: "'Share Tech Mono', monospace",
         textColor: '#00ff00',
         glowColor: '#008000',
+    },
+    minimalist: {
+        font: "'Roboto Mono', monospace",
+        textColor: '#ffffff',
+        glowColor: '#000000',
+    },
+    neon: {
+        font: "'Bungee', cursive",
+        textColor: '#ff00ff',
+        glowColor: '#00ffff',
+    },
+    vintage: {
+        font: "'Gochi Hand', cursive",
+        textColor: '#a0522d',
+        glowColor: '#f5deb3',
+    },
+    pastel: {
+        font: "'Patrick Hand', cursive",
+        textColor: '#ffb6c1',
+        glowColor: '#add8e6',
+    },
+    kawaii: {
+        font: "'Amatic SC', cursive",
+        textColor: '#ff69b4',
+        glowColor: '#87cefa',
+    },
+    handwritten: {
+        font: "'Indie Flower', cursive",
+        textColor: '#6a5acd',
+        glowColor: '#ffe4e1',
     }
 };
+
+const FONT_MAP = {
+    'Orbitron': "'Orbitron', sans-serif",
+    'Bungee': "'Bungee', cursive",
+    'Press Start 2P': "'Press Start 2P', cursive",
+    'Share Tech Mono': "'Share Tech Mono', monospace",
+    'VT323': "'VT323', monospace",
+    'Wallpoet': "'Wallpoet', cursive",
+    'Gochi Hand': "'Gochi Hand', cursive",
+    'Patrick Hand': "'Patrick Hand', cursive",
+    'Amatic SC': "'Amatic SC', cursive",
+    'Roboto Mono': "'Roboto Mono', monospace",
+    'Space Mono': "'Space Mono', monospace",
+    'Fira Code': "'Fira Code', monospace",
+    'Anton': "'Anton', sans-serif",
+    'Bebas Neue': "'Bebas Neue', sans-serif",
+    'Caveat': "'Caveat', cursive",
+    'Indie Flower': "'Indie Flower', cursive"
+};
+
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1);
+    const regex = /([^&=]+)=([^&]*)/g;
+    let m;
+    while ((m = regex.exec(queryString))) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+
+    const parsedParams = {};
+    if (params.font) {
+        parsedParams.font = FONT_MAP[params.font] || params.font; // Use map or fallback to raw value
+    }
+    if (params.textColor) {
+        parsedParams.textColor = '#' + params.textColor.replace(/^#/, '');
+    }
+    if (params.glowColor) {
+        parsedParams.glowColor = '#' + params.glowColor.replace(/^#/, '');
+    }
+    if (params.fontSize) {
+        parsedParams.fontSize = parseFloat(params.fontSize);
+    }
+    if (params.is12Hour !== undefined) {
+        parsedParams.is12Hour = params.is12Hour.toLowerCase() === 'true';
+    }
+    if (params.showSeconds !== undefined) {
+        parsedParams.showSeconds = params.showSeconds.toLowerCase() === 'true';
+    }
+    if (params.showDate !== undefined) {
+        parsedParams.showDate = params.showDate.toLowerCase() === 'true';
+    }
+    if (params.showDayOfWeek !== undefined) {
+        parsedParams.showDayOfWeek = params.showDayOfWeek.toLowerCase() === 'true';
+    }
+    if (params.transparentBg !== undefined) {
+        parsedParams.transparentBg = params.transparentBg.toLowerCase() === 'true';
+    }
+    if (params.theme) {
+        parsedParams.theme = params.theme;
+    }
+
+    return parsedParams;
+}
 
 let settings = {};
 
@@ -125,24 +218,47 @@ function applySettings() {
 }
 
 function loadSettings() {
+    // Default settings
+    const defaultSettings = {
+        font: "'Orbitron', sans-serif",
+        textColor: '#eeeeee',
+        glowColor: '#00ffff',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+        transparentBg: false,
+    };
+
+    // Load settings from localStorage
     const savedSettings = localStorage.getItem(SETTINGS_STORAGE_KEY);
-    if (savedSettings) {
-        settings = JSON.parse(savedSettings);
-    } else {
-        // Default settings
-        settings = {
-            font: "'Orbitron', sans-serif",
-            textColor: '#eeeeee',
-            glowColor: '#00ffff',
-            fontSize: 12,
-            is12Hour: false,
-            showSeconds: true,
-            showDate: true,
-            showDayOfWeek: true,
-            transparentBg: false,
-        };
+    let currentSettings = savedSettings ? JSON.parse(savedSettings) : {};
+
+    // Merge default settings with saved settings
+    settings = { ...defaultSettings, ...currentSettings };
+
+    // Apply URL parameters
+    const urlParams = getQueryParams();
+
+    // Apply theme from URL if present
+    if (urlParams.theme && PRESETS[urlParams.theme]) {
+        const theme = PRESETS[urlParams.theme];
+        settings = { ...settings, ...theme };
+        // Remove theme from urlParams so it doesn't override individual settings later
+        delete urlParams.theme;
     }
+
+    // Merge URL parameters, overriding previous settings
+    settings = { ...settings, ...urlParams };
+
+    // Ensure font is correctly mapped if it came from URL and was a short name
+    if (urlParams.font && FONT_MAP[urlParams.font]) {
+        settings.font = FONT_MAP[urlParams.font];
+    }
+
     applySettings();
+    saveSettings(); // Save the merged settings, including URL params, for persistence
 }
 
 function toggleSettingsPanel() {
@@ -270,7 +386,22 @@ importInput.addEventListener('change', (e) => {
 });
 
 
-// Initial load
-loadSettings();
-
 setInterval(updateClock, 1000);
+
+// Initial update
+updateClock();
+
+// Hide settings panel and button if in OBS
+if (navigator.userAgent.includes("OBS")) {
+    settingsPanel.style.display = 'none';
+    settingsToggleButton.style.display = 'none';
+}
+
+// Add a class to body when settings panel is open to disable clock interaction
+settingsPanel.addEventListener('transitionend', () => {
+    if (settingsPanel.classList.contains('open')) {
+        document.body.classList.add('settings-open');
+    } else {
+        document.body.classList.remove('settings-open');
+    }
+});
