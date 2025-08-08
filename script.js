@@ -24,7 +24,7 @@ const importInput = document.getElementById('import-input');
 
 
 // Storage Keys
-const SETTINGS_STORAGE_KEY = 'stylish-clock-settings-v2';
+const SETTINGS_STORAGE_KEY = 'st-clock-settings-v2';
 
 const PRESETS = {
     cyberpunk: {
@@ -359,7 +359,7 @@ exportButton.addEventListener('click', () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'stylish-clock-settings.json';
+    a.download = 'st-clock-settings.json';
     a.click();
     URL.revokeObjectURL(url);
 });

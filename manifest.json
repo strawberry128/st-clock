@@ -1,5 +1,5 @@
 {
-  "name": "Styled Clock",
+  "name": "ST Clock",
   "short_name": "Clock",
   "description": "A stylish digital clock application.",
   "start_url": "./index.html",
