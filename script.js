@@ -386,6 +386,7 @@ importInput.addEventListener('change', (e) => {
 });
 
 
+loadSettings();
 setInterval(updateClock, 1000);
 
 // Initial update
