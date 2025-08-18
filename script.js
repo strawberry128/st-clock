@@ -9,133 +9,210 @@ const settingsToggleButton = document.getElementById('settings-toggle-button');
 const settingsCloseButton = document.getElementById('settings-close-button');
 
 // Setting Controls
-const fontSelect = document.getElementById('font-select');
-const textColorPicker = document.getElementById('text-color-picker');
-const glowColorPicker = document.getElementById('glow-color-picker');
-const fontSizeSlider = document.getElementById('font-size-slider');
-const hourFormatToggle = document.getElementById('hour-format-toggle');
-const showSecondsToggle = document.getElementById('show-seconds-toggle');
-const showDateToggle = document.getElementById('show-date-toggle');
-const showDayOfWeekToggle = document.getElementById('show-day-of-week-toggle');
-const transparentBgToggle = document.getElementById('transparent-bg-toggle');
 const themeSelect = document.getElementById('theme-select');
-const exportButton = document.getElementById('export-button');
-const importInput = document.getElementById('import-input');
-
-
-// Storage Keys
-const SETTINGS_STORAGE_KEY = 'st-clock-settings-v2';
 
 const PRESETS = {
     cyberpunk: {
         font: "'Orbitron', sans-serif",
         textColor: '#00ffff',
         glowColor: '#ff00ff',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     retro: {
         font: "'Press Start 2P', cursive",
         textColor: '#ff9900',
         glowColor: '#ffff00',
+        fontSize: 10,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     matrix: {
         font: "'Share Tech Mono', monospace",
         textColor: '#00ff00',
         glowColor: '#008000',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     minimalist: {
         font: "'Roboto Mono', monospace",
         textColor: '#ffffff',
         glowColor: '#000000',
+        fontSize: 12,
+        is12Hour: true,
+        showSeconds: false,
+        showDate: false,
+        showDayOfWeek: false,
     },
     neon: {
         font: "'Bungee', cursive",
         textColor: '#ff00ff',
         glowColor: '#00ffff',
+        fontSize: 14,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     vintage: {
         font: "'Gochi Hand', cursive",
         textColor: '#a0522d',
         glowColor: '#f5deb3',
+        fontSize: 15,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     pastel: {
         font: "'Patrick Hand', cursive",
         textColor: '#ffb6c1',
         glowColor: '#add8e6',
+        fontSize: 15,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     kawaii: {
         font: "'Amatic SC', cursive",
         textColor: '#ff69b4',
         glowColor: '#87cefa',
+        fontSize: 18,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     },
     handwritten: {
         font: "'Indie Flower', cursive",
         textColor: '#6a5acd',
         glowColor: '#ffe4e1',
+        fontSize: 14,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    fire: {
+        font: "'Anton', sans-serif",
+        textColor: '#ff4500',
+        glowColor: '#ffd700',
+        fontSize: 13,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    ice: {
+        font: "'Bebas Neue', sans-serif",
+        textColor: '#b0e0e6',
+        glowColor: '#ffffff',
+        fontSize: 14,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    forest: {
+        font: "'Caveat', cursive",
+        textColor: '#228b22',
+        glowColor: '#9acd32',
+        fontSize: 16,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    ocean: {
+        font: "'Roboto Mono', monospace",
+        textColor: '#00bfff',
+        glowColor: '#00ffff',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    sunshine: {
+        font: "'Patrick Hand', cursive",
+        textColor: '#ffd700',
+        glowColor: '#ff4500',
+        fontSize: 15,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    galaxy: {
+        font: "'Orbitron', sans-serif",
+        textColor: '#dda0dd',
+        glowColor: '#4b0082',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    hacker: {
+        font: "'VT323', monospace",
+        textColor: '#00ff00',
+        glowColor: '#008000',
+        fontSize: 14,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    bubblegum: {
+        font: "'Bungee', cursive",
+        textColor: '#ff69b4',
+        glowColor: '#1e90ff',
+        fontSize: 13,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    grayscale: {
+        font: "'Space Mono', monospace",
+        textColor: '#c0c0c0',
+        glowColor: '#808080',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    steampunk: {
+        font: "'Wallpoet', cursive",
+        textColor: '#daa520',
+        glowColor: '#8b4513',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    dreamy: {
+        font: "'Caveat', cursive",
+        textColor: '#e6e6fa',
+        glowColor: '#dda0dd',
+        fontSize: 16,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
     }
 };
-
-const FONT_MAP = {
-    'Orbitron': "'Orbitron', sans-serif",
-    'Bungee': "'Bungee', cursive",
-    'Press Start 2P': "'Press Start 2P', cursive",
-    'Share Tech Mono': "'Share Tech Mono', monospace",
-    'VT323': "'VT323', monospace",
-    'Wallpoet': "'Wallpoet', cursive",
-    'Gochi Hand': "'Gochi Hand', cursive",
-    'Patrick Hand': "'Patrick Hand', cursive",
-    'Amatic SC': "'Amatic SC', cursive",
-    'Roboto Mono': "'Roboto Mono', monospace",
-    'Space Mono': "'Space Mono', monospace",
-    'Fira Code': "'Fira Code', monospace",
-    'Anton': "'Anton', sans-serif",
-    'Bebas Neue': "'Bebas Neue', sans-serif",
-    'Caveat': "'Caveat', cursive",
-    'Indie Flower': "'Indie Flower', cursive"
-};
-
-function getQueryParams() {
-    const params = {};
-    const queryString = window.location.search.substring(1);
-    const regex = /([^&=]+)=([^&]*)/g;
-    let m;
-    while ((m = regex.exec(queryString))) {
-        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-    }
-
-    const parsedParams = {};
-    if (params.font) {
-        parsedParams.font = FONT_MAP[params.font] || params.font; // Use map or fallback to raw value
-    }
-    if (params.textColor) {
-        parsedParams.textColor = '#' + params.textColor.replace(/^#/, '');
-    }
-    if (params.glowColor) {
-        parsedParams.glowColor = '#' + params.glowColor.replace(/^#/, '');
-    }
-    if (params.fontSize) {
-        parsedParams.fontSize = parseFloat(params.fontSize);
-    }
-    if (params.is12Hour !== undefined) {
-        parsedParams.is12Hour = params.is12Hour.toLowerCase() === 'true';
-    }
-    if (params.showSeconds !== undefined) {
-        parsedParams.showSeconds = params.showSeconds.toLowerCase() === 'true';
-    }
-    if (params.showDate !== undefined) {
-        parsedParams.showDate = params.showDate.toLowerCase() === 'true';
-    }
-    if (params.showDayOfWeek !== undefined) {
-        parsedParams.showDayOfWeek = params.showDayOfWeek.toLowerCase() === 'true';
-    }
-    if (params.transparentBg !== undefined) {
-        parsedParams.transparentBg = params.transparentBg.toLowerCase() === 'true';
-    }
-    if (params.theme) {
-        parsedParams.theme = params.theme;
-    }
-
-    return parsedParams;
-}
 
 let settings = {};
 
@@ -183,38 +260,34 @@ function updateClock() {
     dateElement.textContent = formatDate(now);
 }
 
-function saveSettings() {
-    localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
-}
-
 function applySettings() {
     // Font
     clockElement.style.fontFamily = settings.font;
-    fontSelect.value = settings.font;
 
     // Colors
     root.style.setProperty('--text-color', settings.textColor);
-    textColorPicker.value = settings.textColor;
     root.style.setProperty('--glow-color', settings.glowColor);
-    glowColorPicker.value = settings.glowColor;
 
     // Font Size
     const fontSize = settings.fontSize + 'vw';
     timeElement.style.fontSize = fontSize;
     dateElement.style.fontSize = (settings.fontSize / 3) + 'vw';
-    fontSizeSlider.value = settings.fontSize;
 
     // Background
     document.body.style.background = settings.transparentBg ? 'transparent' : 'radial-gradient(ellipse at center, #444 0%, #222 100%)';
-    transparentBgToggle.checked = settings.transparentBg;
-
-    // Toggles
-    hourFormatToggle.checked = settings.is12Hour;
-    showSecondsToggle.checked = settings.showSeconds;
-    showDateToggle.checked = settings.showDate;
-    showDayOfWeekToggle.checked = settings.showDayOfWeek;
 
     updateClock(); // Apply time/date format changes immediately
+}
+
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1);
+    const regex = /([^&=]+)=([^&]*)/g;
+    let m;
+    while ((m = regex.exec(queryString))) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+    return params;
 }
 
 function loadSettings() {
@@ -228,37 +301,22 @@ function loadSettings() {
         showSeconds: true,
         showDate: true,
         showDayOfWeek: true,
-        transparentBg: false,
+        transparentBg: true,
     };
 
-    // Load settings from localStorage
-    const savedSettings = localStorage.getItem(SETTINGS_STORAGE_KEY);
-    let currentSettings = savedSettings ? JSON.parse(savedSettings) : {};
+    settings = { ...defaultSettings };
 
-    // Merge default settings with saved settings
-    settings = { ...defaultSettings, ...currentSettings };
-
-    // Apply URL parameters
     const urlParams = getQueryParams();
+    const themeFromUrl = urlParams.theme;
 
-    // Apply theme from URL if present
-    if (urlParams.theme && PRESETS[urlParams.theme]) {
-        const theme = PRESETS[urlParams.theme];
-        settings = { ...settings, ...theme };
-        // Remove theme from urlParams so it doesn't override individual settings later
-        delete urlParams.theme;
+    if (themeFromUrl && PRESETS[themeFromUrl]) {
+        applyTheme(themeFromUrl);
+        themeSelect.value = themeFromUrl;
+    } else {
+        const firstTheme = Object.keys(PRESETS)[0];
+        applyTheme(firstTheme);
+        themeSelect.value = firstTheme;
     }
-
-    // Merge URL parameters, overriding previous settings
-    settings = { ...settings, ...urlParams };
-
-    // Ensure font is correctly mapped if it came from URL and was a short name
-    if (urlParams.font && FONT_MAP[urlParams.font]) {
-        settings.font = FONT_MAP[urlParams.font];
-    }
-
-    applySettings();
-    saveSettings(); // Save the merged settings, including URL params, for persistence
 }
 
 function toggleSettingsPanel() {
@@ -266,123 +324,21 @@ function toggleSettingsPanel() {
 }
 
 function applyTheme(themeName) {
-    if (themeName === 'custom') return;
-
     const theme = PRESETS[themeName];
     if (!theme) return;
 
-    settings.font = theme.font;
-    settings.textColor = theme.textColor;
-    settings.glowColor = theme.glowColor;
+    settings = { ...settings, ...theme };
 
     applySettings();
-    saveSettings();
 }
 
 // Event Listeners
 settingsToggleButton.addEventListener('click', toggleSettingsPanel);
 settingsCloseButton.addEventListener('click', toggleSettingsPanel);
 
-
-document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 's' && e.ctrlKey) {
-        e.preventDefault(); // Prevent browser's save dialog
-        toggleSettingsPanel();
-    }
-});
-
-fontSelect.addEventListener('change', (e) => {
-    settings.font = e.target.value;
-    themeSelect.value = 'custom';
-    applySettings();
-    saveSettings();
-});
-
-textColorPicker.addEventListener('input', (e) => {
-    settings.textColor = e.target.value;
-    themeSelect.value = 'custom';
-    applySettings();
-    saveSettings();
-});
-
-glowColorPicker.addEventListener('input', (e) => {
-    settings.glowColor = e.target.value;
-    themeSelect.value = 'custom';
-    applySettings();
-    saveSettings();
-});
-
-fontSizeSlider.addEventListener('input', (e) => {
-    settings.fontSize = e.target.value;
-    applySettings();
-});
-
-fontSizeSlider.addEventListener('change', saveSettings); // Save only when user releases the slider
-
-hourFormatToggle.addEventListener('change', (e) => {
-    settings.is12Hour = e.target.checked;
-    applySettings();
-    saveSettings();
-});
-
-showSecondsToggle.addEventListener('change', (e) => {
-    settings.showSeconds = e.target.checked;
-    applySettings();
-    saveSettings();
-});
-
-showDateToggle.addEventListener('change', (e) => {
-    settings.showDate = e.target.checked;
-    applySettings();
-    saveSettings();
-});
-
-showDayOfWeekToggle.addEventListener('change', (e) => {
-    settings.showDayOfWeek = e.target.checked;
-    applySettings();
-    saveSettings();
-});
-
-transparentBgToggle.addEventListener('change', (e) => {
-    settings.transparentBg = e.target.checked;
-    applySettings();
-    saveSettings();
-});
-
 themeSelect.addEventListener('change', (e) => {
     applyTheme(e.target.value);
-});
-
-exportButton.addEventListener('click', () => {
-    const settingsString = JSON.stringify(settings, null, 2);
-    const blob = new Blob([settingsString], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'st-clock-settings.json';
-    a.click();
-    URL.revokeObjectURL(url);
-});
-
-importInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        try {
-            const importedSettings = JSON.parse(event.target.result);
-            settings = { ...settings, ...importedSettings }; // Merge imported settings
-            applySettings();
-            saveSettings();
-            themeSelect.value = 'custom';
-            alert('Settings imported successfully!');
-        } catch (error) {
-            alert('Error importing settings: Invalid file format.');
-        }
-    };
-    reader.readAsText(file);
-    e.target.value = ''; // Reset input
+    themeSelect.value = e.target.value;
 });
 
 

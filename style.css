@@ -61,17 +61,7 @@ body {
     cursor: pointer;
 }
 
-.settings-panel h2, .settings-panel h3 {
-    color: #0ff;
-    text-align: center;
-    border-bottom: 1px solid #0ff;
-    padding-bottom: 10px;
-    margin-top: 15px;
-}
 
-.settings-panel h3:first-of-type {
-    margin-top: 0;
-}
 
 #settings-toggle-button {
     position: absolute;
@@ -85,43 +75,10 @@ body {
     z-index: 101;
 }
 
-#font-select, #theme-select {
+#theme-select {
     background-color: #333;
     color: #eee;
     border: 1px solid #555;
     padding: 5px;
-    width: 150px;
-}
-
-.setting-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 15px;
-    font-size: 16px;
-    color: #eee;
-}
-
-.import-button {
-    background-color: #333;
-    color: #eee;
-    border: 1px solid #555;
-    padding: 8px 12px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 5px;
-}
-
-#export-button {
-     background-color: #333;
-    color: #eee;
-    border: 1px solid #555;
-    padding: 8px 12px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 5px;
-}
-
-input[type="range"] {
     width: 150px;
 }
