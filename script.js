@@ -12,8 +12,118 @@ const settingsCloseButton = document.getElementById('settings-close-button');
 const themeSelect = document.getElementById('theme-select');
 
 const PRESETS = {
-    cyberpunk: {
+    alien: {
+        font: "'Nova Square', sans-serif",
+        textColor: '#7fff00',
+        glowColor: '#abff4f',
+        fontSize: 13,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    earth: {
+        font: "'Caveat', cursive",
+        textColor: '#8B4513',
+        glowColor: '#228B22',
+        fontSize: 16,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    jungle: {
+        font: "'Gochi Hand', cursive",
+        textColor: '#006400',
+        glowColor: '#ADFF2F',
+        fontSize: 15,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    lava: {
+        font: "'Anton', sans-serif",
+        textColor: '#FF4500',
+        glowColor: '#FF0000',
+        fontSize: 13,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    quantum: {
         font: "'Orbitron', sans-serif",
+        textColor: '#8A2BE2',
+        glowColor: '#4B0082',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    techno: {
+        font: "'Bebas Neue', sans-serif",
+        textColor: '#FF00FF',
+        glowColor: '#00FFFF',
+        fontSize: 14,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    underwater: {
+        font: "'Roboto Mono', monospace",
+        textColor: '#00BFFF',
+        glowColor: '#1E90FF',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    wildwest: {
+        font: "'Press Start 2P', cursive",
+        textColor: '#D2691E',
+        glowColor: '#A0522D',
+        fontSize: 10,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    xray: {
+        font: "'Space Mono', monospace",
+        textColor: '#FFFFFF',
+        glowColor: '#C0C0C0',
+        fontSize: 12,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    youthful: {
+        font: "'Patrick Hand', cursive",
+        textColor: '#FFD700',
+        glowColor: '#FF69B4',
+        fontSize: 15,
+        is12Hour: true,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    zebra: {
+        font: "'Zilla Slab Highlight', cursive",
+        textColor: '#FFFFFF',
+        glowColor: '#000000',
+        fontSize: 13,
+        is12Hour: false,
+        showSeconds: true,
+        showDate: true,
+        showDayOfWeek: true,
+    },
+    cyberpunk: {
+        font: "'Audiowide', cursive",
         textColor: '#00ffff',
         glowColor: '#ff00ff',
         fontSize: 12,
@@ -23,7 +133,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     retro: {
-        font: "'Press Start 2P', cursive",
+        font: "'Emilys Candy', cursive",
         textColor: '#ff9900',
         glowColor: '#ffff00',
         fontSize: 10,
@@ -43,7 +153,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     minimalist: {
-        font: "'Roboto Mono', monospace",
+        font: "'Cutive Mono', monospace",
         textColor: '#ffffff',
         glowColor: '#000000',
         fontSize: 12,
@@ -63,7 +173,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     vintage: {
-        font: "'Gochi Hand', cursive",
+        font: "'Uncial Antiqua', cursive",
         textColor: '#a0522d',
         glowColor: '#f5deb3',
         fontSize: 15,
@@ -73,7 +183,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     pastel: {
-        font: "'Patrick Hand', cursive",
+        font: "'Annie Use Your Telescope', cursive",
         textColor: '#ffb6c1',
         glowColor: '#add8e6',
         fontSize: 15,
@@ -103,7 +213,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     fire: {
-        font: "'Anton', sans-serif",
+        font: "'Black Ops One', cursive",
         textColor: '#ff4500',
         glowColor: '#ffd700',
         fontSize: 13,
@@ -113,7 +223,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     ice: {
-        font: "'Bebas Neue', sans-serif",
+        font: "'Iceland', cursive",
         textColor: '#b0e0e6',
         glowColor: '#ffffff',
         fontSize: 14,
@@ -123,7 +233,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     forest: {
-        font: "'Caveat', cursive",
+        font: "'Mountains of Christmas', cursive",
         textColor: '#228b22',
         glowColor: '#9acd32',
         fontSize: 16,
@@ -133,7 +243,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     ocean: {
-        font: "'Roboto Mono', monospace",
+        font: "'Kelly Slab', sans-serif",
         textColor: '#00bfff',
         glowColor: '#00ffff',
         fontSize: 12,
@@ -143,7 +253,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     sunshine: {
-        font: "'Patrick Hand', cursive",
+        font: "'Sunshiney', cursive",
         textColor: '#ffd700',
         glowColor: '#ff4500',
         fontSize: 15,
@@ -153,7 +263,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     galaxy: {
-        font: "'Orbitron', sans-serif",
+        font: "'Codystar', cursive",
         textColor: '#dda0dd',
         glowColor: '#4b0082',
         fontSize: 12,
@@ -173,7 +283,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     bubblegum: {
-        font: "'Bungee', cursive",
+        font: "'Flavors', cursive",
         textColor: '#ff69b4',
         glowColor: '#1e90ff',
         fontSize: 13,
@@ -183,7 +293,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     grayscale: {
-        font: "'Space Mono', monospace",
+        font: "'Cousine', monospace",
         textColor: '#c0c0c0',
         glowColor: '#808080',
         fontSize: 12,
@@ -203,7 +313,7 @@ const PRESETS = {
         showDayOfWeek: true,
     },
     dreamy: {
-        font: "'Caveat', cursive",
+        font: "'Satisfy', cursive",
         textColor: '#e6e6fa',
         glowColor: '#dda0dd',
         fontSize: 16,
@@ -341,6 +451,32 @@ themeSelect.addEventListener('change', (e) => {
     themeSelect.value = e.target.value;
 });
 
+// Populate theme selector
+const themeNamesForSelect = Object.keys(PRESETS);
+themeNamesForSelect.forEach(themeName => {
+    const option = document.createElement('option');
+    option.value = themeName;
+    option.textContent = themeName.charAt(0).toUpperCase() + themeName.slice(1);
+    themeSelect.appendChild(option);
+});
+
+const keyThemeMap = {};
+const themeNames = Object.keys(PRESETS);
+themeNames.forEach(themeName => {
+    const firstLetter = themeName.charAt(0);
+    if (!keyThemeMap[firstLetter]) {
+        keyThemeMap[firstLetter] = themeName;
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+    if (keyThemeMap[key]) {
+        const newTheme = keyThemeMap[key];
+        applyTheme(newTheme);
+        themeSelect.value = newTheme;
+    }
+});
 
 loadSettings();
 setInterval(updateClock, 1000);
